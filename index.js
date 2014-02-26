@@ -4,7 +4,7 @@ var through2 = require('through2'),
 module.exports = function (options) {
 	var files = [],
 		cache = {},
-		config;
+		config, reporter;
 
 	config = {
 		reporter: 'default'
@@ -13,6 +13,11 @@ module.exports = function (options) {
 		Object.keys(options).forEach(function (k) {
 			config[k] = options[k];
 		});
+	}
+
+	reporter = nodeunit.reporters[config.reporter];
+	if (!reporter) {
+		reporter = require('reporter');
 	}
 
 	// Save a copy of the require cache before testing
@@ -24,7 +29,7 @@ module.exports = function (options) {
 		files.push(file.path);
 		done();
 	}, function (done) {
-		nodeunit.reporters[config.reporter].run(files, config.reporterOptions, function (err) {
+		reporter.run(files, config.reporterOptions, function (err) {
 			// Delete any modules that were added to the require cache
 			Object.keys(require.cache).filter(function (k) {
 				return !cache[k];

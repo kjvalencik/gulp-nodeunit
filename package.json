@@ -1,6 +1,6 @@
 {
   "name": "gulp-nodeunit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Gulp nodeunit runner",
   "main": "index.js",
   "repository": {
