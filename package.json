@@ -1,0 +1,24 @@
+{
+  "name": "gulp-nodeunit",
+  "version": "0.0.1",
+  "description": "Gulp nodeunit runner",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kjvalencik/gulp-nodeunit.git"
+  },
+  "keywords": [
+    "Gulp",
+    "nodeunit"
+  ],
+  "author": "K.J. Valencik",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kjvalencik/gulp-nodeunit/issues"
+  },
+  "homepage": "https://github.com/kjvalencik/gulp-nodeunit",
+  "dependencies": {
+    "through2": "~0.4.1",
+    "nodeunit": "~0.8.6"
+  }
+}
