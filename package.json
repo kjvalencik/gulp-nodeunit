@@ -1,6 +1,6 @@
 {
   "name": "gulp-nodeunit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Gulp nodeunit runner",
   "main": "index.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "git@github.com:kjvalencik/gulp-nodeunit.git"
   },
   "keywords": [
-    "Gulp",
+    "gulp",
     "nodeunit"
   ],
   "author": "K.J. Valencik",
