@@ -1,28 +1,28 @@
-var through2   = require('through2'),
-	nodeunit   = require('nodeunit'),
-	baseConfig = require('nodeunit/bin/nodeunit.json');
+var through2         = require('through2'),
+	nodeunit         = require('nodeunit'),
+	baseReporterOpts = require('nodeunit/bin/nodeunit.json');
 
 var extend;
 
 extend = function (a, b) {
-	Object.keys(b).forEach(function (k) {
-		a[k] = b[k];
-	});
+	a = a || {};
+	if (b) {
+		Object.keys(b).forEach(function (k) {
+			a[k] = b[k];
+		});
+	}
 	return a;
 };
 
 module.exports = function (options) {
 	var files = [],
 		cache = {},
-		config, reporter;
+		config, reporterOpts, reporter;
 
 	config = extend({
 		reporter: 'default'
-	}, baseConfig);
-
-	if ("object" === typeof options) {
-		config = extend(config, options);
-	}
+	}, options);
+	reporterOpts = extend(extend({}, baseReporterOpts), config.reporterOptions);
 
 	reporter = nodeunit.reporters[config.reporter];
 	if (!reporter) {
@@ -38,7 +38,7 @@ module.exports = function (options) {
 		files.push(file.path);
 		done();
 	}, function (done) {
-		reporter.run(files, config.reporterOptions, function (err) {
+		reporter.run(files, reporterOpts, function (err) {
 			// Delete any modules that were added to the require cache
 			Object.keys(require.cache).filter(function (k) {
 				return !cache[k];
