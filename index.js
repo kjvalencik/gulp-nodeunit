@@ -1,18 +1,27 @@
-var through2 = require('through2'),
-	nodeunit = require('nodeunit');
+var through2   = require('through2'),
+	nodeunit   = require('nodeunit'),
+	baseConfig = require('nodeunit/bin/nodeunit.json');
+
+var extend;
+
+extend = function (a, b) {
+	Object.keys(b).forEach(function (k) {
+		a[k] = b[k];
+	});
+	return a;
+};
 
 module.exports = function (options) {
 	var files = [],
 		cache = {},
 		config, reporter;
 
-	config = {
+	config = extend({
 		reporter: 'default'
-	};
+	}, baseConfig);
+
 	if ("object" === typeof options) {
-		Object.keys(options).forEach(function (k) {
-			config[k] = options[k];
-		});
+		config = extend(config, options);
 	}
 
 	reporter = nodeunit.reporters[config.reporter];
