@@ -26,7 +26,7 @@ module.exports = function (options) {
 
 	reporter = nodeunit.reporters[config.reporter];
 	if (!reporter) {
-		reporter = require('reporter');
+		reporter = require(config.reporter);
 	}
 
 	// Save a copy of the require cache before testing
